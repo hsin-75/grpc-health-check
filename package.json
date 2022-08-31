@@ -1,5 +1,5 @@
 {
-  "name": "grpc-ts-health-check",
+  "name": "@fonoster/grpc-health-check",
   "version": "3.1.1",
   "description": "An implementation of gRPC health checks, written in typescript.",
   "keywords": [
@@ -9,7 +9,7 @@
     "health-check",
     "typescript"
   ],
-  "repository": "https://github.com/nicolaspearson/kalos.git",
+  "repository": "https://github.com/fonoster/grpc-health-check.git",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {

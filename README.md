@@ -1,26 +1,11 @@
 # gRPC Health Check
 
-[![License][license-image]][license-url]
-[![Current Version](https://img.shields.io/npm/v/grpc-ts-health-check.svg)](https://www.npmjs.com/package/grpc-ts-health-check)
-[![npm](https://img.shields.io/npm/dw/grpc-ts-health-check.svg)](https://www.npmjs.com/package/grpc-ts-health-check)
-
-[license-url]: https://opensource.org/licenses/MIT
-[license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
-
-An implementation of `gRPC` health checks, written in typescript.
-
-It is assumed that you are using the `@grpc/grpc-js` library.
+An implementation of gRPC health checks, for node.js-based apps that uses `@grpc/grpc-js` as a base.
 
 ## Installation
 
 ```sh
-yarn add grpc-ts-health-check
-```
-
-Install the `@grpc/grpc-js` library:
-
-```sh
-yarn add @grpc/grpc-js
+yarn add git+https://github.com/fonoster/grpc-health-check.git
 ```
 
 ## Dependencies
@@ -37,15 +22,13 @@ import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import path from 'path';
 
-import { HealthClient } from '../dist/proto/grpc/health/v1/Health';
-import { HealthCheckResponse__Output } from '../dist/proto/grpc/health/v1/HealthCheckResponse';
-import { ProtoGrpcType } from '../dist/proto/health';
+import { HealthClient, HealthCheckResponse, ProtoGrpcType } from '@fonoster/grpc-health-check';
 
 export class HealthGrpcClient {
   private readonly client: HealthClient;
 
   constructor({ host, port }: { host: string; port: number }) {
-    const packageDefinition = protoLoader.loadSync(path.resolve('../dist/proto/health.proto'), {
+    const packageDefinition = protoLoader.loadSync(path.resolve('@fonoster/grpc-health-check/dist/proto/health.proto'), {
       arrays: true,
       keepCase: true,
       longs: String,
@@ -60,21 +43,21 @@ export class HealthGrpcClient {
     );
   }
 
-  checkStatus(): Promise<HealthCheckResponse__Output> {
+  checkStatus(): Promise<HealthCheckResponse> {
     return new Promise((resolve, reject) => {
       this.client.check(
         { service: 'example' },
-        (error?: grpc.ServiceError | null, result?: HealthCheckResponse__Output): void => {
+        (error?: grpc.ServiceError | null, result?: HealthCheckResponse): void => {
           if (error) {
             reject(error);
           }
-          resolve(result || ({} as HealthCheckResponse__Output));
+          resolve(result || ({} as HealthCheckResponse));
         },
       );
     });
   }
 
-  watchStatus(): grpc.ClientReadableStream<HealthCheckResponse__Output> {
+  watchStatus(): grpc.ClientReadableStream<HealthCheckResponse> {
     return this.client.watch({ service: 'example' });
   }
 }
@@ -97,23 +80,11 @@ Set the initial status of the service and continues to watch for any changes.
 
 - `request` - the `HealthCheckRequest` object.
 
+## Authors
+
+This repository is a clone of [kalos](https://github.com/nicolaspearson/kalos/tree/main/packages/grpc-ts-health-check),
+thanks to [Nicolas Pearson](https://github.com/nicolaspearson) for his implementation.
+
 ## License
 
-MIT License
-
-## Contributing
-
-Contributions are encouraged, please see further details below:
-
-### Pull Requests
-
-Here are some basic rules to follow to ensure timely addition of your request:
-
-1. Match coding style (braces, spacing, etc.).
-2. If it is a feature, bugfix, or anything please only change the minimum amount of code required to
-   satisfy the change.
-3. Please keep PR titles easy to read and descriptive of changes, this will make them easier to
-   merge.
-4. Pull requests _must_ be made against the `main` branch. Any other branch (unless specified by the
-   maintainers) will get rejected.
-5. Check for existing issues first, before filing a new issue.
+Released under the [MIT License](/LICENSE). Extended from [kalos repository.](https://github.com/nicolaspearson/kalos/blob/main/LICENSE)
