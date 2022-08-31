@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GrpcHealthCheck = void 0;
+exports.HealthCheck = void 0;
 const grpc_boom_1 = __importDefault(require("grpc-boom"));
 const HealthCheckResponse_1 = require("./proto/grpc/health/v1/HealthCheckResponse");
-class GrpcHealthCheck {
+class HealthCheck {
     statusMap;
     watchStatusMap = {};
     watchErrorMap = {};
@@ -54,5 +54,5 @@ class GrpcHealthCheck {
         }, 1000);
     }
 }
-exports.GrpcHealthCheck = GrpcHealthCheck;
-//# sourceMappingURL=GrpcHealthCheck.js.map
+exports.HealthCheck = HealthCheck;
+//# sourceMappingURL=health-service.js.map

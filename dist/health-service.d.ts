@@ -1,7 +1,7 @@
 import type * as grpc from "@grpc/grpc-js";
 import { HealthCheckRequest__Output as HealthCheckRequest } from "./proto/grpc/health/v1/HealthCheckRequest";
 import { _grpc_health_v1_HealthCheckResponse_ServingStatus as ServingStatus, HealthCheckResponse } from "./proto/grpc/health/v1/HealthCheckResponse";
-export declare class GrpcHealthCheck {
+export declare class HealthCheck {
     private statusMap;
     private watchStatusMap;
     private watchErrorMap;
