@@ -24,10 +24,10 @@ import { getProto } from "./proto-definition";
 export class HealthClient {
   private readonly client: Client;
 
-  public constructor(address: string, credentials: grpc.ChannelCredentials) {
+  public constructor(address: string) {
     const proto = getProto();
 
-    this.client = new proto.grpc.health.v1.Health(address, credentials);
+    this.client = new proto.grpc.health.v1.Health(address, grpc.ChannelCredentials.createInsecure());
   }
 
   public async check(service: string): Promise<HealthCheckResponse> {

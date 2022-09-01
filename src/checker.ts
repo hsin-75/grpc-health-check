@@ -16,22 +16,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import * as grpc from "@grpc/grpc-js";
 import logger from "@fonoster/logger";
 import { HealthClient } from "./health-client";
 
-export type Options = {
-  address: string;
-  credentials: grpc.ChannelCredentials;
-};
-
-export async function checker(service: string, options: Options) {
-  const health = new HealthClient(options.address, options.credentials);
+export async function checker(service: string, address: string) {
+  const health = new HealthClient(address);
 
   try {
     const { status } = await health.check(service);
 
-    logger.verbose(
+    logger.info(
       `@fonoster/grpc-health-check healthcheck success [status: ${status}]`
     );
 
