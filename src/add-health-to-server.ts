@@ -20,7 +20,8 @@ import * as grpc from "@grpc/grpc-js";
 import { _grpc_health_v1_HealthCheckResponse_ServingStatus as ServingStatus } from "./proto/grpc/health/v1/HealthCheckResponse";
 import { HealthCheck } from "./health-service";
 import { getProto } from "./proto-definition";
-import logger from "@fonoster/logger";
+import { getLogger } from "@fonoster/logger"
+const logger = getLogger({ service: "grpc-health-check", filePath: __filename })
 
 /**
  * Add the health service to your existing server.
@@ -37,7 +38,7 @@ export function useHealth(server: grpc.Server, proto = getProto()) {
   ) as unknown as grpc.UntypedServiceImplementation;
 
   server.addService(proto.grpc.health.v1.Health.service, service);
-  logger.info("added healthcheck service from @fonoster/grpc-health-check");
+  logger.info("added healthcheck service");
 
   return server;
 }

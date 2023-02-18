@@ -16,8 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import logger from "@fonoster/logger";
+import { getLogger } from "@fonoster/logger"
 import { HealthClient } from "./health-client";
+
+const logger = getLogger({ service: "grpc-health-check", filePath: __filename })
 
 export async function checker(service: string, address: string) {
   const health = new HealthClient(address);
@@ -26,13 +28,13 @@ export async function checker(service: string, address: string) {
     const { status } = await health.check(service);
 
     logger.info(
-      `@fonoster/grpc-health-check healthcheck success [status: ${status}]`
+      `healthcheck success [status: ${status}]`
     );
 
     process.exit(0);
   } catch (error) {
     logger.error(
-      `@fonoster/grpc-health-check healthcheck failed: ${error}`,
+      `healthcheck failed: ${error}`,
       error
     );
 

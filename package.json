@@ -27,8 +27,8 @@
     "grpc-boom": "^3.0.11"
   },
   "devDependencies": {
-    "@fonoster/logger": "^0.3.16-alpha.2",
-    "@grpc/grpc-js": "^1.6.10",
+    "@fonoster/logger": "^0.3.20",
+    "@grpc/grpc-js": "^1.8.4",
     "@grpc/proto-loader": "^0.7.2",
     "@types/google-protobuf": "^3.15.6",
     "@types/jest": "^28.1.8",
@@ -39,8 +39,8 @@
     "typescript": "^4.7.4"
   },
   "peerDependencies": {
-    "@fonoster/logger": "^0.3.16-alpha.2",
-    "@grpc/grpc-js": "^1.6.10",
+    "@fonoster/logger": "^0.3.20",
+    "@grpc/grpc-js": "^1.8.4",
     "@grpc/proto-loader": "^0.7.2"
   },
   "publishConfig": {
