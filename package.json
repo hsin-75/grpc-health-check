@@ -1,6 +1,6 @@
 {
   "name": "@fonoster/grpc-health-check",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "An implementation of gRPC health checks, written in typescript.",
   "keywords": [
     "grpc",
@@ -14,17 +14,17 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json && cp src/proto/health.proto dist/proto/",
-    "gen:proto": "yarn proto-loader-gen-types --arrays --objects --keepCase --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/ src/proto/health.proto",
-    "lint": "yarn lint:eslint && yarn lint:prettier",
-    "lint:eslint": "yarn exec:eslint --cache-file .eslintcache $(pwd)",
-    "lint:eslint:fix": "yarn lint:eslint --fix",
-    "lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
-    "lint:prettier": "yarn exec:prettier --check $(pwd)",
-    "lint:prettier:fix": "yarn exec:prettier --write $(pwd)"
+    "gen:proto": "npm proto-loader-gen-types --arrays --objects --keepCase --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/ src/proto/health.proto",
+    "lint": "npm lint:eslint && npm lint:prettier",
+    "lint:eslint": "npm exec:eslint --cache-file .eslintcache $(pwd)",
+    "lint:eslint:fix": "npm lint:eslint --fix",
+    "lint:fix": "npm lint:eslint:fix && npm lint:prettier:fix",
+    "lint:prettier": "npm exec:prettier --check $(pwd)",
+    "lint:prettier:fix": "npm exec:prettier --write $(pwd)"
   },
   "dependencies": {
     "google-protobuf": "^3.21.0",
-    "grpc-boom": "^3.0.11"
+    "grpc-boom": "^3.0.12"
   },
   "devDependencies": {
     "@fonoster/logger": "^0.3.20",
