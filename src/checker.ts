@@ -27,7 +27,7 @@ export async function checker(service: string, address: string) {
   try {
     const { status } = await health.check(service);
 
-    logger.info(
+    logger.verbose(
       `healthcheck success [status: ${status}]`
     );
 

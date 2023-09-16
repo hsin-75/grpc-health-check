@@ -8,7 +8,7 @@ async function checker(service, address) {
     const health = new health_client_1.HealthClient(address);
     try {
         const { status } = await health.check(service);
-        logger.info(`healthcheck success [status: ${status}]`);
+        logger.verbose(`healthcheck success [status: ${status}]`);
         process.exit(0);
     }
     catch (error) {

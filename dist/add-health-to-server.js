@@ -12,7 +12,7 @@ function useHealth(server, proto = (0, proto_definition_1.getProto)()) {
     };
     const service = new health_service_1.HealthCheck(statusMap);
     server.addService(proto.grpc.health.v1.Health.service, service);
-    logger.info("added healthcheck service");
+    logger.verbose("added healthcheck service");
     return server;
 }
 exports.useHealth = useHealth;

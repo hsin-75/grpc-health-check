@@ -38,7 +38,7 @@ export function useHealth(server: grpc.Server, proto = getProto()) {
   ) as unknown as grpc.UntypedServiceImplementation;
 
   server.addService(proto.grpc.health.v1.Health.service, service);
-  logger.info("added healthcheck service");
+  logger.verbose("added healthcheck service");
 
   return server;
 }
